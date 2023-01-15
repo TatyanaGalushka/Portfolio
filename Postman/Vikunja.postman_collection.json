@@ -1,0 +1,914 @@
+{
+	"info": {
+		"_postman_id": "143727d4-7b9b-42cf-a547-3d7ca19b924b",
+		"name": "Vikunja",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create an account positiv",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var jsonData = pm.response.json();",
+							"let post_raw = JSON.parse(request.data)",
+							"",
+							"pm.test(\"Check username from response eqluals username from request\", function () {",
+							"        pm.expect(jsonData.username).to.eql(post_raw.username);",
+							"});",
+							"console.log(post_raw.username)",
+							"console.log(jsonData.username) "
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"4321\",\n    \"email\": \"Galushka{{$randomEmail}}\",\n    \"password\": \"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/v1/register",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create an account exist username",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"pm.test(\"Check that user is exist\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"A user with this username already exists.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"1234\",\n    \"email\": \"1234@mail.ru\",\n    \"password\": \"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/v1/register",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create an account exist email",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"Check text error that the email is exist\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"A user with this email address already exists.\");",
+							"});",
+							"",
+							"var jsonData = pm.response.json();",
+							"pm.test(\"Check that code is 1002\", function () {",
+							"        pm.expect(jsonData.code).to.eql(1002);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"43215\",\n    \"email\": \"1234@mail.ru\",\n    \"password\": \"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/v1/register",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authorization v1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"{{username}}\",\n    \"password\": \"{{password}}\",\n    \"long_token\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/v1/login",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authorization v2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"let lists = pm.response.json()",
+							"console.log(lists.token) ",
+							"pm.collectionVariables.set(\"token\", lists.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"1234\",\n    \"password\": \"1234\",\n    \"long_token\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/v1/login",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check exist account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Check that user is exist\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"A user with this username already exists.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/api/v1/labels",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"labels"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Creation a labels",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"pm.test(\"Text 1234 available\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"1234\");",
+							"});",
+							"let jsonData = pm.response.json()",
+							"pm.test(\"The response from the server is id=1249\", function () {",
+							"      pm.expect(jsonData.created_by.id).to.eql(1249);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"max_right\": null,\n    \"id\": 0,\n    \"title\": \"label\",\n    \"hex_color\": \"e8e8e8\",\n    \"description\": \"\",\n    \"created_by\": {\n        \"max_right\": null,\n        \"id\": 0,\n        \"email\": \"\",\n        \"username\": \"\",\n        \"name\": \"\",\n        \"exp\": 0,\n        \"type\": 0,\n        \"created\": null,\n        \"updated\": null,\n        \"settings\": {\n            \"max_right\": null,\n            \"name\": \"\",\n            \"email_reminders_enabled\": true,\n            \"discoverable_by_name\": false,\n            \"discoverable_by_email\": false,\n            \"overdue_tasks_reminders_enabled\": true,\n            \"week_start\": 0,\n            \"timezone\": \"\",\n            \"language\": \"ru-RU\"\n        }\n    },\n    \"list_id\": 0,\n    \"text_color\": \"#4a4a4a\",\n    \"created\": \"1970-01-01T07:00:00+07:00\",\n    \"updated\": \"1970-01-01T07:00:00+07:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/v1/labels",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"labels"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Creation a namespaces",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"string_you_want_to_search\");",
+							"});",
+							"let jsonData = pm.response.json()",
+							"pm.test(\"В ответе от сервера есть id=18\", function () {",
+							"      pm.expect(jsonData.created_by.id).to.eql(18);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"max_right\": null,\n    \"id\": 0,\n    \"title\": \"321\",\n    \"description\": \"\",\n    \"owner\": {\n        \"max_right\": null,\n        \"id\": 0,\n        \"email\": \"\",\n        \"username\": \"\",\n        \"name\": \"\",\n        \"exp\": 0,\n        \"type\": 0,\n        \"created\": null,\n        \"updated\": null,\n        \"settings\": {\n            \"max_right\": null,\n            \"name\": \"\",\n            \"email_reminders_enabled\": true,\n            \"discoverable_by_name\": false,\n            \"discoverable_by_email\": false,\n            \"overdue_tasks_reminders_enabled\": true,\n            \"week_start\": 0,\n            \"timezone\": \"\",\n            \"language\": \"ru-RU\"\n        }\n    },\n    \"lists\": [],\n    \"is_archived\": false,\n    \"hex_color\": \"\",\n    \"subscription\": null,\n    \"created\": \"1970-01-01T00:00:00.000Z\",\n    \"updated\": \"1970-01-01T00:00:00.000Z\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/v1/namespaces",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"namespaces"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Creation a lists",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"max_right\": null,\n    \"id\": 0,\n    \"title\": \"1234\",\n    \"description\": \"\",\n    \"owner\": {\n        \"max_right\": null,\n        \"id\": 0,\n        \"email\": \"\",\n        \"username\": \"\",\n        \"name\": \"\",\n        \"exp\": 0,\n        \"type\": 0,\n        \"created\": null,\n        \"updated\": null,\n        \"settings\": {\n            \"max_right\": null,\n            \"name\": \"\",\n            \"email_reminders_enabled\": true,\n            \"discoverable_by_name\": false,\n            \"discoverable_by_email\": false,\n            \"overdue_tasks_reminders_enabled\": true,\n            \"week_start\": 0,\n            \"timezone\": \"\",\n            \"language\": \"ru-RU\"\n        }\n    },\n    \"tasks\": [],\n    \"namespace_id\": 26,\n    \"is_archived\": false,\n    \"hex_color\": \"\",\n    \"identifier\": \"\",\n    \"background_information\": null,\n    \"is_favorite\": false,\n    \"subscription\": null,\n    \"position\": 0,\n    \"background_blur_hash\": \"\",\n    \"created\": \"1970-01-01T00:00:00.000Z\",\n    \"updated\": \"1970-01-01T00:00:00.000Z\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/v1/namespaces/26/lists",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"namespaces",
+						"26",
+						"lists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Creation a teams",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"max_right\": null,\n    \"id\": 0,\n    \"name\": \"new teams\",\n    \"description\": \"\",\n    \"members\": [],\n    \"right\": 0,\n    \"created_by\": {\n        \"max_right\": null,\n        \"id\": 0,\n        \"email\": \"\",\n        \"username\": \"\",\n        \"name\": \"\",\n        \"exp\": 0,\n        \"type\": 0,\n        \"created\": null,\n        \"updated\": null,\n        \"settings\": {\n            \"max_right\": null,\n            \"name\": \"\",\n            \"email_reminders_enabled\": true,\n            \"discoverable_by_name\": false,\n            \"discoverable_by_email\": false,\n            \"overdue_tasks_reminders_enabled\": true,\n            \"week_start\": 0,\n            \"timezone\": \"\",\n            \"language\": \"ru-RU\"\n        }\n    },\n    \"created\": \"1970-01-01T00:00:00.000Z\",\n    \"updated\": \"1970-01-01T00:00:00.000Z\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/v1/teams",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"teams"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Creation a comments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"max_right\":null,\"id\":0,\"task_id\":27,\"comment\":\"123\\n\",\"author\":{\"max_right\":null,\"id\":0,\"email\":\"\",\"username\":\"\",\"name\":\"\",\"exp\":0,\"type\":0,\"created\":null,\"updated\":null,\"settings\":{\"max_right\":null,\"name\":\"\",\"email_reminders_enabled\":true,\"discoverable_by_name\":false,\"discoverable_by_email\":false,\"overdue_tasks_reminders_enabled\":true,\"week_start\":0,\"timezone\":\"\",\"language\":\"ru-RU\"}},\"created\":\"1970-01-01T00:00:00.000Z\",\"updated\":\"1970-01-01T00:00:00.000Z\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/v1/tasks/27/comments",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"tasks",
+						"27",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete comment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URL2}}/api/v1/tasks/17/comments/8",
+					"host": [
+						"{{URL2}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"tasks",
+						"17",
+						"comments",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View comments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL2}}/api/v1/tasks/17/comments",
+					"host": [
+						"{{URL2}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"tasks",
+						"17",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View lists",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL2}}/api/v1/lists",
+					"host": [
+						"{{URL2}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"lists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View teams",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL2}}/api/v1/labels",
+					"host": [
+						"{{URL2}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"labels"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View labels",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL2}}/api/v1/labels",
+					"host": [
+						"{{URL2}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"labels"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete labels",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URL2}}/api/v1/labels/4",
+					"host": [
+						"{{URL2}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"labels",
+						"4"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "",
+			"type": "default"
+		}
+	]
+}

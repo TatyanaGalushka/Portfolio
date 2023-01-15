@@ -1,0 +1,1207 @@
+{
+	"info": {
+		"_postman_id": "25b587ea-81ae-4a13-b094-d7773169bbd5",
+		"name": "challenges",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST /challenger (201)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/challenger",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"challenger"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /challenges (200)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/challenges",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"challenges"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /todos (200)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/todos",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /todo (404) not plural",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/todo",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"todo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /todos/{id} (200)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/todos/1969",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"todos",
+						"1969"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /todos/{id} (404)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/todos/100",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"todos",
+						"100"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "HEAD /todos (200)",
+			"request": {
+				"method": "HEAD",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/todos",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /todos (201)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"todo list\",\n  \"doneStatus\": true,\n  \"description\": \"todo list\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/todos",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /todos (200) ?filter",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/todos?doneStatus=true",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"todos"
+					],
+					"query": [
+						{
+							"key": "doneStatus",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /todos (400) doneStatus",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"todo list\",\n  \"doneStatus\": null,\n  \"description\": \"todo list\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/todos",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /todos/{id} (200)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/todos/153",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"todos",
+						"153"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE /todos/{id} (200)",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/todos/106",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"todos",
+						"106"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OPTIONS /todos (200)",
+			"request": {
+				"method": "OPTIONS",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/todos",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /todos (200) XML",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "default"
+					},
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/todos",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /todos (200) JSON",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/todos",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /todos (200) XML pref",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/xml,application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/todos",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /todos (200) no accept",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/todos",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /todos (406)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/gzip",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/todos",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /todos JSON",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/JSON",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"todo list\",\n  \"doneStatus\": false,\n  \"description\": \"todo list\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/todos",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /todos XML",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/XML",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/JSON",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<todo>\n    <doneStatus>true</doneStatus>\n    <title>file paperwork today</title>\n  </todo>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/todos",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /todos (415)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					},
+					{
+						"key": "Content-Type",
+						"value": "bob",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/todos",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /todos JSON to XML",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/JSON",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/XML",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"todo list\",\n  \"doneStatus\": false,\n  \"description\": \"todo list\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/todos",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /todos XML to JSON",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/JSON",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "  <todo>\n  <doneStatus>true</doneStatus>\n  <title>file paperwork today</title>\n  </todo>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/todos",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE /heartbeat (405)",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/heartbeat",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"heartbeat"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH /heartbeat (500)",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/heartbeat",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"heartbeat"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TRACE /heartbeat (501)",
+			"request": {
+				"method": "TRACE",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/heartbeat",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"heartbeat"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /secret/token (401)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/secret/token",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"secret",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /secret/token (201)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "123",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/secret/token",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"secret",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /heartbeat (204)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/heartbeat",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"heartbeat"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /secret/note (401)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/secret/note",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"secret",
+						"note"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /secret/note (200)?",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					},
+					{
+						"key": "X-Auth-Token",
+						"value": "{{X-Auth-Token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/secret/note",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"secret",
+						"note"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /secret/note (200)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					},
+					{
+						"key": "X-Auth-Token",
+						"value": "{{X-Auth-Token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"note\":\"my note\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/secret/note",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"secret",
+						"note"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /secret/note (403)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					},
+					{
+						"key": "X-AUTH-TOKEN",
+						"value": "used - response",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/secret/note",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"secret",
+						"note"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /secret/note (401)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"note\":\"my note\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/secret/note",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"secret",
+						"note"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /secret/note (403)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "X-AUTH-TOKEN",
+						"value": "bob",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\n| {\n|   \"note\": \"my note\"\n| }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/secret/note",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"secret",
+						"note"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /secret/note (Bearer)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{X-Auth-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default",
+						"disabled": true
+					},
+					{
+						"key": "X-AUTH-TOKEN",
+						"value": "Bearer {{X-Auth-Token}}",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/secret/note",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"secret",
+						"note"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /secret/note (Bearer)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{X-Auth-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default",
+						"disabled": true
+					},
+					{
+						"key": "X-AUTH-TOKEN",
+						"value": "Bearer {{X-Auth-Token}}",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\"note\":\"my note\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/secret/note",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"secret",
+						"note"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE /todos/{id} (200) all",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger}}",
+						"type": "default"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default",
+						"disabled": true
+					},
+					{
+						"key": "X-AUTH-TOKEN",
+						"value": "Bearer {{X-Auth-Token}}",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/todos/181",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"todos",
+						"181"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
